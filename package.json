@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "bsb -make-world -w",
-    "build": "bsb -make-world && webpack",
+    "build": "bsb -make-world",
     "clean": "bsb -clean-world && rm -Rvf lib/output",
     "test": "jest lib/js/src",
     "test:watch": "jest lib/js/src --watchAll"

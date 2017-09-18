@@ -1,6 +1,5 @@
 .merlin
 /node_modules/
 /lib/bs
-/lib/js
 npm-debug.log
 .DS_Store
