@@ -37,7 +37,7 @@ let register_rules stylesheet ::cls ::decl=[] ::rules=[] () => {
   stylesheet.map = StringMap.add cls rules stylesheet.map;
   stylesheet.listeners |>
   List.iter (fun listener => listener.callable (RegisterRulesEvent cls rules));
-  "." ^ cls
+  cls
 };
 
 let get_all_rules stylesheet => {

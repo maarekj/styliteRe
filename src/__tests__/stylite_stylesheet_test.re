@@ -17,7 +17,7 @@ describe
               Stylite_rules.(
                 register_rules stylesheet cls::"my-class" decl::[Margin "10px", Padding "5px"] ()
               ) |>
-            toEqual ".my-class"
+            toEqual "my-class"
         );
       test
         "register_rules"
@@ -32,7 +32,7 @@ describe
                   rules::[(["&:hover", "&:focused"], [Color "red"])]
                   ()
               ) |>
-            toEqual ".my-class-2"
+            toEqual "my-class-2"
         );
       test
         "get_all_rules"
