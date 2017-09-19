@@ -700,17 +700,7 @@ let print_declarations declarations => {
   print_declarations_aux declarations ""
 };
 
-let join glue list => {
-  let rec _join list acc =>
-    switch list {
-    | [] => acc
-    | [a] => acc ^ a
-    | [a, ...rest] => _join rest (acc ^ a ^ glue)
-    };
-  _join list ""
-};
-
-let print_selectors selectors => join ", " selectors;
+let print_selectors selectors => Stylite_utils.join ", " selectors;
 
 let print_rule rule =>
   switch rule {
@@ -718,4 +708,4 @@ let print_rule rule =>
     print_selectors selectors ^ " {\n" ^ print_declarations declarations ^ "}"
   };
 
-let print_rules (rules: list rule) => join "\n" (List.map print_rule rules);
+let print_rules (rules: list rule) => Stylite_utils.join "\n" (List.map print_rule rules);

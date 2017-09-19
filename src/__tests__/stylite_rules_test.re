@@ -2,14 +2,6 @@ open Jest;
 open ExpectJs;
 open Stylite_rules;
 
-describe "join" (fun () => {
-  test "join" (fun () => {
-    let list = ["joseph", "vanessa", "yona", "naéli"];
-    let joined = list |> join " | ";
-    expect joined |> toEqual "joseph | vanessa | yona | naéli"
-  });
-});
-
 describe "print_rules" (fun () => {
   test "print_rules" (fun () => {
     let rules = print_rules [
