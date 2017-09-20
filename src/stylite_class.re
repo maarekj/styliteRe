@@ -2,21 +2,23 @@ let combine classes => Stylite_utils.join " " classes;
 
 type condition =
   | Ok string
+  | Option (option string)
+  | OptionCond bool (option string)
   | Cond bool string;
 
 let combine_conditions conditions =>
   conditions |>
-  List.filter (
-    fun cond =>
-      switch cond {
-      | Cond false _ => false
-      | _ => true
-      }
-  ) |>
   List.map (
     fun cond =>
       switch cond {
       | Ok cls => cls
-      | Cond _ cls => cls
+      | Cond false _ => ""
+      | Cond true cls => cls
+      | Option (Some cls) => cls
+      | Option None => ""
+      | OptionCond false _
+      | OptionCond _ None => ""
+      | OptionCond true (Some cls) => cls
       }
-  ) |> combine;
+  ) |>
+  List.filter (fun cls => cls != "") |> combine;
