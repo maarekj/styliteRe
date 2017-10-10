@@ -1,6 +1,5 @@
 open Jest;
 open ExpectJs;
-open StyliteRe;
 open Stylite_rules;
 
 describe "styliteRe" (fun () => {
