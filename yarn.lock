@@ -449,9 +449,9 @@ bs-jest@^0.1.0:
   dependencies:
     jest "^19.0.2"
 
-bs-platform@^1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-1.9.2.tgz#19e1f3a0331ffbcf416c5c1b883fdf656aac18b8"
+bs-platform@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-2.1.0.tgz#63560ff8f7142c9c0631559df1c35590b9f6d8b2"
 
 bs-webapi@^0.6.1:
   version "0.6.1"

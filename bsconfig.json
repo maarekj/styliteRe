@@ -1,5 +1,6 @@
 {
     "name" : "styliteRe",
+    "refmt": 3,
     "reason" : {"react-jsx" : 2},
     "bs-dependencies": ["bs-jest", "bs-webapi"],
     "bsc-flags": ["-bs-no-version-header", "-bs-super-errors"],

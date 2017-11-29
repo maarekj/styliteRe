@@ -1,9 +1,9 @@
-let join glue list => {
-  let rec _join list acc =>
+let join = (glue, list) => {
+  let rec _join = (list, acc) =>
     switch list {
     | [] => acc
-    | [a] => acc ^ a
-    | [a, ...rest] => _join rest (acc ^ a ^ glue)
+    | [a] => acc ++ a
+    | [a, ...rest] => _join(rest, acc ++ a ++ glue)
     };
-  _join list ""
+  _join(list, "")
 };
