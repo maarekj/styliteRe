@@ -11,12 +11,12 @@ A `rule` is a couple made of:
 
 Here is an example of a `rule`:
 ```reason
-let my_rule = (["#button-1", ".big-rectangle"], [BackgroundColor "red", PaddingTop "10px"]);
+let my_rule = (["#button-1", ".big-rectangle"], [BackgroundColor("red"), PaddingTop("10px")]);
 ```
 
 We can convert a `rule` to a CSS statement with `print_rule`:
 ```reason
-print my_rule;
+print(my_rule);
 /*
 "#button-1, .big-rectangle {
   background-color: red;
@@ -38,32 +38,39 @@ In order to integrate `Stylite` rules in an application one has to:
 We can register 
 ```reason
 let wrap_image_cls =
-    StyliteRe.Rules.(
-        Stylite.register_rules
-            cls::"wrap_image"
-            declaration::[
-                BorderRadius "30px",
-                Border "1px solid",
-                BorderColor "#19c0ff",
-                MarginRight "15px",
-                Cursor "pointer"
-            ]
-            ()
-    );
+  StyliteRe.Rules.(
+    Stylite.register_rules(
+      ~cls="wrap_image",
+      ~declaration=[
+        BorderRadius("30px"),
+        Border("1px solid"),
+        BorderColor("#19c0ff"),
+        MarginRight("15px"),
+        Cursor("pointer")
+      ],
+      ()
+    )
+  );
 ```
 
 # Pseudo selector and nested selector
 
 ```reason
-let image_cls = Stylite.register_rules cls::"image" declaration::(StyliteRe.Rules.([Margin "15px"]));
-let wrap_image_cls = 
-    Stylite.register_rules 
-        cls::"wrap_image"
-        rules::[
-          (["&:hover > ." ^ image_cls], (StyliteRe.Rules.([Border "solid 1px red"]))
-          (["& > ." ^ image_cls], (StyliteRe.Rules.([Border "solid 1px black"]))
-        ];
-let css = Stylite.print_all_rules ();
+open StyliteRe.Rules;
+
+let image_cls = Stylite.register_rules(~cls="image", ~decl=[Margin("15px")]);
+
+let wrap_image_cls =
+  Stylite.register_rules(
+    ~cls="wrap_image",
+    ~rules=[
+      (["&:hover > ." ++ image_cls], [Border("solid 1px red")]),
+      (["& > ." ++ image_cls], [Border("solid 1px black")])
+    ],
+    ()
+  );
+
+let css = Stylite.print_all_rules();
 
 // Css is
 // .image {
