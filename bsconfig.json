@@ -1,5 +1,5 @@
 {
-  "name": "styliteRe",
+  "name": "stylite-re",
   "refmt": 3,
   "bs-dependencies": [
     "bs-jest",
