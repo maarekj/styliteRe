@@ -81,6 +81,8 @@ type declaration +=
   | OutlineStyle (string)
   | OutlineWidth (string)
   | Overflow (string)
+  | OverflowX (string)
+  | OverflowY (string)
   | Padding (string)
   | PaddingTop (string)
   | PaddingRight (string)
@@ -342,7 +344,9 @@ type declaration +=
   | TextRendering (string)
   | RubyAlign (string)
   | RubyMerge (string)
-  | RubyPosition (string);
+  | RubyPosition (string)
+  | CustomProperty (string, string)
+  | CustomRule (string);
 
 type rule = (list(selector), list(declaration));
 
@@ -426,6 +430,8 @@ let print_declaration = (declaration) =>
   | OutlineStyle(value) => "outline-style: " ++ value ++ ";"
   | OutlineWidth(value) => "outline-width: " ++ value ++ ";"
   | Overflow(value) => "overflow: " ++ value ++ ";"
+  | OverflowX(value) => "overflow-x: " ++ value ++ ";"
+  | OverflowY(value) => "overflow-y: " ++ value ++ ";"
   | Padding(value) => "padding: " ++ value ++ ";"
   | PaddingTop(value) => "padding-top: " ++ value ++ ";"
   | PaddingRight(value) => "padding-right: " ++ value ++ ";"
@@ -688,6 +694,8 @@ let print_declaration = (declaration) =>
   | RubyAlign(value) => "ruby-align: " ++ value ++ ";"
   | RubyMerge(value) => "ruby-merge: " ++ value ++ ";"
   | RubyPosition(value) => "ruby-position: " ++ value ++ ";"
+  | CustomProperty(property, value) => property ++ ": " ++ value ++ ";"
+  | CustomRule(rule) => rule
   | _ => "unknown: unknown;"
   };
 
