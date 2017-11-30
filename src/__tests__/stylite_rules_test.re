@@ -12,10 +12,16 @@ describe(
       () => {
         let my_rule = (
           ["#button-1", ".big-rectangle"],
-          [BackgroundColor("red"), PaddingTop("10px"), CustomProperty("my-prop", "10px"), CustomRule("my-rule: 10px;")]
+          [
+            BackgroundColor("red"),
+            PaddingTop("10px"),
+            CustomProperty("my-prop", "10px"),
+            CustomRule("my-rule: 10px;"),
+            Content({js|—|js})
+          ]
         );
         let css = print_rule(my_rule);
-        let expected_css = "#button-1, .big-rectangle {\n  background-color: red;\n  padding-top: 10px;\n  my-prop: 10px;\n  my-rule: 10px;\n}";
+        let expected_css = {js|#button-1, .big-rectangle {\n  background-color: red;\n  padding-top: 10px;\n  my-prop: 10px;\n  my-rule: 10px;\n  content: "—";\n}|js};
         expect(css) |> toEqual(expected_css)
       }
     )

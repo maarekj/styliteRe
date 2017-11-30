@@ -385,7 +385,7 @@ let print_declaration = (declaration) =>
   | CaptionSide(value) => "caption-side: " ++ value ++ ";"
   | Clear(value) => "clear: " ++ value ++ ";"
   | Color(value) => "color: " ++ value ++ ";"
-  | Content(value) => "content: " ++ value ++ ";"
+  | Content(value) => "content: \"" ++ value ++ "\";"
   | CounterIncrement(value) => "counter-increment: " ++ value ++ ";"
   | CounterReset(value) => "counter-reset : " ++ value ++ ";"
   | Cue(value) => "cue: " ++ value ++ ";"
