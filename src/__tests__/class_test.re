@@ -2,7 +2,7 @@ open Jest;
 
 open ExpectJs;
 
-open Stylite_class;
+open Class;
 
 describe(
   "combine",

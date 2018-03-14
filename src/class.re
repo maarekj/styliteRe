@@ -1,4 +1,4 @@
-let combine = (classes) => Stylite_utils.join(" ", classes);
+let combine = (classes) => Utils.join(" ", classes);
 
 type condition =
   | Ok(string)

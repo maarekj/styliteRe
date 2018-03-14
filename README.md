@@ -9,9 +9,14 @@ A `rule` is a couple made of:
 1. a list of selectors
 2. a list of declarations
 
-Here is an example of a `rule`:
+A `mediaQuery` is a couple made of:
+1. optional media query
+2. a list of rules
+
+Here is an example of a `rule` and `mediaQuery`:
 ```reason
 let my_rule = (["#button-1", ".big-rectangle"], [BackgroundColor("red"), PaddingTop("10px")]);
+let my_media_query = (Some("screen and (max-width: 664px)"), [my_rules]);
 ```
 
 We can convert a `rule` to a CSS statement with `print_rule`:
@@ -21,6 +26,19 @@ print(my_rule);
 "#button-1, .big-rectangle {
   background-color: red;
   padding-top: 10px;
+}";
+*/
+```
+
+And convert a `mediaQuery` to a CSS statement with `print_media_query`:
+```reason
+print(my_media_query);
+/*
+"@media screen and (max-width: 664px) {
+  #button-1, .big-rectangle {
+    background-color: red;
+    padding-top: 10px;
+  }
 }";
 */
 ```
@@ -70,7 +88,7 @@ let wrap_image_cls =
     ()
   );
 
-let css = Stylite.print_all_rules();
+let css = Stylite.print_all();
 
 // Css is
 // .image {
@@ -87,9 +105,57 @@ let css = Stylite.print_all_rules();
 //
 ```
 
+# Use media query
+
+```reason
+open StyliteRe.Rules;
+
+let image_cls = Stylite.register_rules(~cls="image", ~decl=[Margin("15px")]);
+
+let wrap_image_cls =
+  Stylite.register_rules(
+    ~cls="wrap_image",
+    ~mediaQueries=[
+      (None, [(["&"], [Color("blue")])]),
+      (
+        Some("screen and (max-width: 664px)"),
+        [
+          (["&:hover > ." ++ image_cls], [Border("solid 1px red")]),
+          (["& > ." ++ image_cls], [Border("solid 1px black")]),
+        ],
+      ),
+    ],
+    (),
+  );
+
+
+let css = Stylite.print_all();
+
+// Css is
+// 
+// .image {
+//   margin 15px;
+// }
+//
+// .wrap_image {
+//   color: blue;
+// } 
+//
+// @media screen and (max-width: 664px) {
+//   .wrap_image:hover .image {
+//     border: solid 1px red;
+//   }
+//
+//   .wrap_image .image {
+//     border: solid 1px black;
+//   }
+// }
+//
+```
+
 # Server side rendering
 
-retrieve the CSS string with `print_all_rules` and put it into a `<style>` element
+retrieve the CSS string with `print_all` and put it into a `<style>` element
 
 # Client side rendering
 

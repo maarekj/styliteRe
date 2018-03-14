@@ -1,9 +1,12 @@
 {
   "name": "stylite-re",
   "refmt": 3,
+  "namespace": true,
   "bs-dependencies": [
-    "bs-jest",
     "bs-webapi"
+  ],
+  "bs-dev-dependencies": [
+    "bs-jest"
   ],
   "bsc-flags": [
     "-bs-no-version-header",
