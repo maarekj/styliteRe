@@ -5,18 +5,22 @@
   "author": "Maarek Joseph",
   "license": "MIT",
   "devDependencies": {
-    "bs-jest": "^0.1.0",
-    "bs-platform": "2.1.0",
-    "webpack": "^3.6.0"
+    "@glennsl/bs-jest": "^0.5.1",
+    "bs-platform": "8.3.3",
+    "webpack": "^5.5.1"
   },
   "scripts": {
     "start": "bsb -make-world -w",
     "build": "bsb -make-world",
     "clean": "bsb -clean-world && rm -Rvf lib/output",
-    "test": "jest lib/js/src",
-    "test:watch": "jest lib/js/src --watchAll"
+    "test": "jest --watchAll --env=node",
+    "test:ci": "jest --ci --bail --no-cache --env=node"
   },
   "dependencies": {
-    "bs-webapi": "^0.6.1"
+    "bs-webapi": "^0.19.1"
+  },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
   }
 }

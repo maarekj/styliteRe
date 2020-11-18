@@ -1,5 +1,6 @@
 module StringMap = Map.Make(String);
-
+open Webapi;
+// open Dom;
 type event =
   | RegisterRulesEvent(string, list(Rules.rule));
 
@@ -63,21 +64,21 @@ let add_listener = (stylesheet, listener) => {
 };
 
 let inject_in_tag = (stylesheet, id) => {
-  let document = DomRe.document;
+  let document = Webapi.Dom.document;
   let styleTag =
-    switch (DocumentRe.getElementById(id, document)) {
+    switch (Webapi.Dom.Document.getElementById(id, document)) {
     | Some(styleTag) => styleTag
     | None =>
-      let styleTag = DocumentRe.createElement("style", document);
-      ElementRe.setAttribute("type", "text/css", styleTag);
-      ElementRe.setId(styleTag, id);
-      let heads = DocumentRe.getElementsByTagName("head", document);
-      let head = HtmlCollectionRe.item(0, heads);
+      let styleTag = Webapi.Dom.Document.createElement("style", document);
+      Webapi.Dom.Element.setAttribute("type", "text/css", styleTag);
+      Webapi.Dom.Element.setId(styleTag, id);
+      let heads = Webapi.Dom.Document.getElementsByTagName("head", document);
+      let head = Dom.HtmlCollection.item(0, heads);
       switch head {
       | None => ()
-      | Some(head) => ElementRe.appendChild(styleTag, head)
+      | Some(head) => Webapi.Dom.Element.appendChild(styleTag, head)
       };
       styleTag;
     };
-  ElementRe.setTextContent(styleTag, Rules.print_media_queries(get_all_media_queries(stylesheet)));
+  Webapi.Dom.Element.setTextContent(styleTag, Rules.print_media_queries(get_all_media_queries(stylesheet)));
 };

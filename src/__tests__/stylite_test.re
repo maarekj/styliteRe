@@ -1,6 +1,6 @@
 open Jest;
 
-open ExpectJs;
+open Expect;
 
 open Rules;
 
@@ -39,7 +39,7 @@ describe("styliteRe", () => {
     let class_name = "my-class";
     let _cls = (MyStylite.register_rules(~cls=class_name, ~decl=[PaddingTop("10px")]))();
     let mediaQueries = MyStylite.get_all();
-    let (mediaQuery, rules) = List.nth(mediaQueries, 0);
+    let (_mediaQuery, rules) = List.nth(mediaQueries, 0);
     let (cls, _decl) = List.nth(rules, 0);
     expect(cls) |> toEqual(["." ++ class_name]);
   });
@@ -51,7 +51,7 @@ describe("styliteRe", () => {
     let class_name = "my-class";
     let _cls = (MyStylite.register_rules(~cls=class_name, ~decl=[PaddingTop("10px")]))();
     let mediaQueries = MyStylite.get_all();
-    let (mediaQuery, rules) = List.nth(mediaQueries, 0);
+    let (_mediaQuery, rules) = List.nth(mediaQueries, 0);
     let (_cls, decl) = List.nth(rules, 0);
     expect(decl) |> toEqual([PaddingTop("10px")]);
   });
