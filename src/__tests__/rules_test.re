@@ -1,6 +1,6 @@
 open Jest;
 
-open ExpectJs;
+open Expect;
 
 open Rules;
 
@@ -13,8 +13,8 @@ describe("print_rule", () =>
         PaddingTop("10px"),
         CustomProperty("my-prop", "10px"),
         CustomRule("my-rule: 10px;"),
-        Content({js|—|js})
-      ]
+        Content({js|—|js}),
+      ],
     );
     let css = print_rule(my_rule);
     let expected_css = {js|#button-1, .big-rectangle {\n  background-color: red;\n  padding-top: 10px;\n  my-prop: 10px;\n  my-rule: 10px;\n  content: "—";\n}|js};
@@ -28,13 +28,13 @@ describe("print_rules", () =>
       print_rules([
         (
           ["#my-id .my-class", "#my-id .my-class:hover"],
-          [Margin("1px 1px 2px 2px"), PaddingBottom("2px"), Color("red")]
+          [Margin("1px 1px 2px 2px"), PaddingBottom("2px"), Color("red")],
         ),
-        (["#my-id .my-class-2"], [BackgroundColor("red")])
+        (["#my-id .my-class-2"], [BackgroundColor("red")]),
       ]);
     expect(rules)
     |> toEqual(
-         "#my-id .my-class, #my-id .my-class:hover {\n  margin: 1px 1px 2px 2px;\n  padding-bottom: 2px;\n  color: red;\n}\n#my-id .my-class-2 {\n  background-color: red;\n}"
+         "#my-id .my-class, #my-id .my-class:hover {\n  margin: 1px 1px 2px 2px;\n  padding-bottom: 2px;\n  color: red;\n}\n#my-id .my-class-2 {\n  background-color: red;\n}",
        );
   })
 );
@@ -47,14 +47,18 @@ describe("print_media_query", () => {
         [
           (
             ["#my-id .my-class", "#my-id .my-class:hover"],
-            [Margin("1px 1px 2px 2px"), PaddingBottom("2px"), Color("red")]
+            [
+              Margin("1px 1px 2px 2px"),
+              PaddingBottom("2px"),
+              Color("red"),
+            ],
           ),
-          (["#my-id .my-class-2"], [BackgroundColor("red")])
-        ]
+          (["#my-id .my-class-2"], [BackgroundColor("red")]),
+        ],
       ));
     expect(mediaQuery)
     |> toEqual(
-         "#my-id .my-class, #my-id .my-class:hover {\n  margin: 1px 1px 2px 2px;\n  padding-bottom: 2px;\n  color: red;\n}\n#my-id .my-class-2 {\n  background-color: red;\n}"
+         "#my-id .my-class, #my-id .my-class:hover {\n  margin: 1px 1px 2px 2px;\n  padding-bottom: 2px;\n  color: red;\n}\n#my-id .my-class-2 {\n  background-color: red;\n}",
        );
   });
   test("print_media_query", () => {
@@ -64,14 +68,18 @@ describe("print_media_query", () => {
         [
           (
             ["#my-id .my-class", "#my-id .my-class:hover"],
-            [Margin("1px 1px 2px 2px"), PaddingBottom("2px"), Color("red")]
+            [
+              Margin("1px 1px 2px 2px"),
+              PaddingBottom("2px"),
+              Color("red"),
+            ],
           ),
-          (["#my-id .my-class-2"], [BackgroundColor("red")])
-        ]
+          (["#my-id .my-class-2"], [BackgroundColor("red")]),
+        ],
       ));
     expect(mediaQuery)
     |> toEqual(
-         "@media screen and (max-width: 664px) {\n#my-id .my-class, #my-id .my-class:hover {\n  margin: 1px 1px 2px 2px;\n  padding-bottom: 2px;\n  color: red;\n}\n#my-id .my-class-2 {\n  background-color: red;\n}\n}"
+         "@media screen and (max-width: 664px) {\n#my-id .my-class, #my-id .my-class:hover {\n  margin: 1px 1px 2px 2px;\n  padding-bottom: 2px;\n  color: red;\n}\n#my-id .my-class-2 {\n  background-color: red;\n}\n}",
        );
   });
 });
@@ -85,21 +93,29 @@ describe("print_media_queries", () =>
           [
             (
               ["#my-id .my-class", "#my-id .my-class:hover"],
-              [Margin("1px 1px 2px 2px"), PaddingBottom("2px"), Color("red")]
+              [
+                Margin("1px 1px 2px 2px"),
+                PaddingBottom("2px"),
+                Color("red"),
+              ],
             ),
-            (["#my-id .my-class-2"], [BackgroundColor("red")])
-          ]
+            (["#my-id .my-class-2"], [BackgroundColor("red")]),
+          ],
         ),
         (
           Some("screen and (max-width: 664px)"),
           [
             (
               ["#my-id .my-class", "#my-id .my-class:hover"],
-              [Margin("1px 1px 2px 2px"), PaddingBottom("2px"), Color("red")]
+              [
+                Margin("1px 1px 2px 2px"),
+                PaddingBottom("2px"),
+                Color("red"),
+              ],
             ),
-            (["#my-id .my-class-2"], [BackgroundColor("red")])
-          ]
-        )
+            (["#my-id .my-class-2"], [BackgroundColor("red")]),
+          ],
+        ),
       ]);
     expect(mediaQueries)
     |> toEqual(
@@ -120,7 +136,7 @@ describe("print_media_queries", () =>
 #my-id .my-class-2 {
   background-color: red;
 }
-}|}
+}|},
        );
   })
 );

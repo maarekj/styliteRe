@@ -1,13 +1,22 @@
 open Jest;
 
-open ExpectJs;
+open Expect;
 
 open Stylesheet;
 
 describe("stylesheet", () => {
   let stylesheet = create();
   test("register_rules with decl", () =>
-    expect(Rules.(register_rules(stylesheet, ~cls="my-class", ~decl=[Margin("10px"), Padding("5px")], ())))
+    expect(
+      Rules.(
+        register_rules(
+          stylesheet,
+          ~cls="my-class",
+          ~decl=[Margin("10px"), Padding("5px")],
+          (),
+        )
+      ),
+    )
     |> toEqual("my-class")
   );
   test("register_rules with decl and rules", () =>
@@ -18,9 +27,9 @@ describe("stylesheet", () => {
           ~cls="my-class-2",
           ~decl=[Margin("10px"), Padding("5px")],
           ~rules=[(["&:hover", "&:focused"], [Color("red")])],
-          ()
+          (),
         )
-      )
+      ),
     )
     |> toEqual("my-class-2")
   );
@@ -32,10 +41,12 @@ describe("stylesheet", () => {
           ~cls="my-class-2",
           ~decl=[Margin("10px"), Padding("5px")],
           ~rules=[(["&:hover", "&:focused"], [Color("red")])],
-          ~mediaQueries=[(Some("(max-width: 664px)"), [(["&"], [Color("blue")])])],
-          ()
+          ~mediaQueries=[
+            (Some("(max-width: 664px)"), [(["&"], [Color("blue")])]),
+          ],
+          (),
         )
-      )
+      ),
     )
     |> toEqual("my-class-2")
   );
@@ -58,7 +69,7 @@ describe("stylesheet", () => {
 .my-class-2 {
   color: blue;
 }
-}|}
+}|},
        );
   });
   describe("listener", () => {
@@ -79,9 +90,9 @@ describe("stylesheet", () => {
           ~cls="my-class-2",
           ~decl=[Margin("10px"), Padding("5px")],
           ~rules=[(["&:hover", "&:focused"], [Color("red")])],
-          ()
+          (),
         )
-      )
+      ),
     );
     test("listener1 is called", () =>
       expect(listener1_is_called^) |> toEqual(true)

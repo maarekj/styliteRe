@@ -1,8 +1,8 @@
 open Jest;
 
-open ExpectJs;
+open Expect;
 
-open Class;
+open !Class;
 
 describe(
   "combine",

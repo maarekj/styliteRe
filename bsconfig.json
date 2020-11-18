@@ -6,7 +6,7 @@
     "bs-webapi"
   ],
   "bs-dev-dependencies": [
-    "bs-jest"
+    "@glennsl/bs-jest"
   ],
   "bsc-flags": [
     "-bs-no-version-header",
